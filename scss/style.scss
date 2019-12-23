@@ -1,6 +1,25 @@
-h1 {
-  color: red;
-  &:hover {
-    color: blue;
+//変数ファイルの読み込み
+@import "variable";
+
+ul {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  background: #666;
+
+  li {
+    width: 30%;
+    padding: 10px;
+    background: $TESTCOLOR;
+    color: $MAINCOLOR;
+    transition: 800ms ease-out transform;
+
+    &:hover {
+      color: blue;
+      transform: translate(10px,0);
+      background: #fff;
+    }
+
   }
+
 }
