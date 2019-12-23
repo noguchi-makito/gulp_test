@@ -4,16 +4,28 @@ ul {
   -webkit-box-pack: center;
           justify-content: center;
   border-radius: 10px;
-  background: #666; }
-  ul li {
-    width: 30%;
-    padding: 10px;
-    background: #ccc;
-    color: #FFF;
-    -webkit-transition: 800ms ease-out transform;
-    transition: 800ms ease-out transform; }
-    ul li:hover {
-      color: blue;
-      -webkit-transform: translate(10px, 0);
-              transform: translate(10px, 0);
-      background: #fff; }
+  background: #ccc;
+}
+
+ul li {
+  width: 30%;
+  padding: 10px;
+  background: #ccc;
+  color: #FFF;
+  -webkit-transition: 800ms ease-out transform;
+  transition: 800ms ease-out transform;
+  color: blue;
+}
+
+ul li:hover {
+  color: blue;
+  -webkit-transform: translate(10px, 0);
+          transform: translate(10px, 0);
+  background: #ddd;
+}
+
+ul li a {
+  display: block;
+  color: #ccc;
+  background: #000;
+}
