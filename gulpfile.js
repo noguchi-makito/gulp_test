@@ -13,6 +13,38 @@ const mozjpeg = require("imagemin-mozjpeg");//画像圧縮
 const htmlbeautify = require("gulp-html-beautify");//HTML整形
 
 
+// ディレクトリーパスの変数
+
+const paths = {
+  root: "./",//ルートパス
+
+  //html
+  html: {
+    src: "html/**/*.html",//編集用パス
+    dest: "./"//コンパイルパス
+  },
+
+  //css
+  styles: {
+    src: "scss/**/*.scss",//編集用パス
+    dest: "./css"//コンパイルパス
+  },
+
+  //js
+  scripts: {
+    src: ["js/**/*.js", "!js/min/**/*.js"],//編集用パス
+    dest: "./js/min"//コンパイルパス
+  },
+
+  //img
+  images: {
+    src: "img",//編集用パス
+    dest: "img/min"//コンパイルパス
+  }
+
+};
+
+
 ////////////////////////////////////////////////////////////////ブラウザーリロード
 
 
@@ -38,11 +70,9 @@ gulp.task( 'browser-sync', function(done) {
 
 ////////////////////////////////////////////////////////////////Sassをコンパイルタスク
 
-const scssDir = "scss/**/*.scss"
-const cssDir = "./css"
 
 gulp.task("sass", function() {
-  return gulp.src(scssDir)
+  return gulp.src(paths.styles.src)
     .pipe(plumber({
       errorHandler: notify.onError({
       title: "scssコンパイルエラー", // 任意のタイトルを表示させる
@@ -51,14 +81,14 @@ gulp.task("sass", function() {
     }))
     .pipe(sass({outputStyle: "expanded"}))
     .pipe(autoprefixer())//ベンダープレフィックス自動追加
-    .pipe(gulp.dest(cssDir))
+    .pipe(gulp.dest(paths.styles.dest))
 });
 
 
 ////////////////////////////////////////////////////////////////jsを圧縮
 
 gulp.task("jsMin", function() {
-  return gulp.src(["js/**/*.js","!js/min/**/*.js"])
+  return gulp.src(paths.scripts.src)
     .pipe(plumber({
       errorHandler: notify.onError({
       title: "js圧縮エラー", // 任意のタイトルを表示させる
@@ -66,17 +96,15 @@ gulp.task("jsMin", function() {
       })
     }))
     .pipe(uglify())
-    .pipe(gulp.dest("./js/min"))
+    .pipe(gulp.dest(paths.scripts.dest))
 });
 
 ////////////////////////////////////////////////////////////////画像圧縮
 
-const imgDir = "img"
-const minDir = "img/min"
 
 //圧縮率の定義
 gulp.task("imgMin", () => {
-  return gulp.src(imgDir + "/*.{png,jpg,gif}")
+  return gulp.src(paths.images.src + "/*.{png,jpg,gif}")
     .pipe(imagemin([
       pngquant("65-80"),// 配列を渡すと文字列を渡すようにエラーが出たので画質のみを設定
       mozjpeg({
@@ -87,14 +115,12 @@ gulp.task("imgMin", () => {
       imagemin.optipng(),
       imagemin.gifsicle()
     ]))
-    .pipe(gulp.dest(minDir));
+    .pipe(gulp.dest(paths.images.dest));
 });
 
 
 ////////////////////////////////////////////////////////////////HTML整形
 
-const htmlDir = "html/**/*.html"
-const shapDir = "./"
 
 gulp.task("htmlbeautify", function(){
   const htmlOption = {
@@ -104,21 +130,21 @@ gulp.task("htmlbeautify", function(){
     indent_inner_html: true//<head>,<body>をインデント
   };//適用ルール記載
 
-  return gulp.src(htmlDir)
+  return gulp.src(paths.html.src)
     .pipe(htmlbeautify(htmlOption))
-    .pipe(gulp.dest(shapDir))
+    .pipe(gulp.dest(paths.html.dest))
 });
 
 
 ////////////////////////////////////////////////////////////////タスクを監視
 
 gulp.task("watch", function(done){
-  gulp.watch("html/**/*.html", gulp.task("htmlbeautify"));//htmlフォルダー内のファイルが更新されたら直下に整形
-  gulp.watch("html/**/*.html", gulp.task("bs-reload"));//画面自動リロード
-  gulp.watch("scss/**/*.scss", gulp.task("sass"));//scssファイルが更新されたらsassを実行
-  gulp.watch("scss/**/*.scss", gulp.task("bs-reload"));//scssが更新されたら画面をリロード
-  gulp.watch(["js/**/*.js","./!js/min/**/*.js"], gulp.task("jsMin"));//jsファイルが更新されたらjsMinを実行
-  gulp.watch(["js/**/*.js","./!js/min/**/*.js"], gulp.task("bs-reload"));//jsが更新されたら画面リロード
+  gulp.watch(paths.html.src, gulp.task("htmlbeautify"));//htmlフォルダー内のファイルが更新されたら直下に整形
+  gulp.watch(paths.html.src, gulp.task("bs-reload"));//画面自動リロード
+  gulp.watch(paths.styles.src, gulp.task("sass"));//scssファイルが更新されたらsassを実行
+  gulp.watch(paths.styles.src, gulp.task("bs-reload"));//scssが更新されたら画面をリロード
+  gulp.watch(paths.scripts.src, gulp.task("jsMin"));//jsファイルが更新されたらjsMinを実行
+  gulp.watch(paths.scripts.src, gulp.task("bs-reload"));//jsが更新されたら画面リロード
 });
 
 
