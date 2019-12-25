@@ -10,6 +10,7 @@ const notify = require('gulp-notify'); //エラー発生時にデスクトップ
 const imagemin = require("gulp-imagemin");//画像圧縮
 const pngquant = require("imagemin-pngquant");//画像圧縮
 const mozjpeg = require("imagemin-mozjpeg");//画像圧縮
+const htmlbeautify = require("gulp-html-beautify");//HTML整形
 
 
 ////////////////////////////////////////////////////////////////ブラウザーリロード
@@ -26,7 +27,7 @@ gulp.task( 'browser-sync', function(done) {
   }
   });
   done();
-  
+
 });
 
   gulp.task( "bs-reload", function(done) {
@@ -90,9 +91,30 @@ gulp.task("imgMin", () => {
 });
 
 
+////////////////////////////////////////////////////////////////HTML整形
+
+const htmlDir = "html/**/*.html"
+const shapDir = "./"
+
+gulp.task("htmlbeautify", function(){
+  const htmlOption = {
+    indent_size: 2,//インデント2
+    preserve_newlines: true,
+    indent_with_tabs: false,
+    indent_inner_html: true//<head>,<body>をインデント
+  };//適用ルール記載
+
+  return gulp.src(htmlDir)
+    .pipe(htmlbeautify(htmlOption))
+    .pipe(gulp.dest(shapDir))
+});
+
+
 ////////////////////////////////////////////////////////////////タスクを監視
 
 gulp.task("watch", function(done){
+  gulp.watch("html/**/*.html", gulp.task("htmlbeautify"));//htmlフォルダー内のファイルが更新されたら直下に整形
+  gulp.watch("html/**/*.html", gulp.task("bs-reload"));//画面自動リロード
   gulp.watch("scss/**/*.scss", gulp.task("sass"));//scssファイルが更新されたらsassを実行
   gulp.watch("scss/**/*.scss", gulp.task("bs-reload"));//scssが更新されたら画面をリロード
   gulp.watch(["js/**/*.js","./!js/min/**/*.js"], gulp.task("jsMin"));//jsファイルが更新されたらjsMinを実行
@@ -102,4 +124,4 @@ gulp.task("watch", function(done){
 
 ///////////////////////////////////////////////////////////gulpで起動するタスク
 
-gulp.task('default', gulp.series("imgMin", "sass", "jsMin", "browser-sync", "watch"));
+gulp.task('default', gulp.series("htmlbeautify", "imgMin", "sass", "jsMin", "browser-sync", "watch"));
