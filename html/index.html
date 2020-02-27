@@ -1,37 +1,99 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <title>giupテスト</title>
+    <meta charset="utf-8" />
+    <title>gulpを使用したテストサイト</title>
 
     <!-- css読み込み -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
 
-    <!-- js読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- fontawsome読み込み -->
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
 
+    <!-- vuejs読み込み -->
+    <script src="js/vue.js"></script>
   </head>
-  <body>
 
-    <div id="contents">
-      <ul>
-        <li>
-          <div>
-            テスト
+  <body>
+    <div id="wrapper">
+      <header class="b-header">
+        <div class="b-header__e-inner">
+          <div class="b-header__e-logo">
+            <h1 class="main_title">会社ロゴ</h1>
+            <p class="sub_text">集客できるホームページ制作</p>
           </div>
-        </li>
-        <li>
-          テスト2
-        </li>
-          <li>
-            テスト3
-          </li>
-            <li>
-              テスト4
-            </li>
-      </ul>
+          <nav class="b-header__e-nav">
+            <ul class="g_nav">
+              <li><a href="#">コンセプト</a></li>
+              <li>
+                <a href="#" v-on:mouseover="active" v-on:mouseleave="no_active">
+                  サービス
+                </a>
+              </li>
+              <li><a href="#">制作費用</a></li>
+              <li><a href="#">実績費用</a></li>
+              <li><a href="#">会社案内</a></li>
+            </ul>
+          </nav>
+          <div class="b-header__e-tell">
+            <a href="tel:000-000"
+              ><i class="fas fa-phone"></i
+              ><span class="number">000-000</span></a
+            >
+          </div>
+        </div>
+        <div class="b-header__e-email">
+          <p><i class="fas fa-envelope-open"></i></p>
+          <p>お問い合わせ</p>
+        </div>
+      </header>
+
+      <!-- サービスのメガメニュー -->
+      <div v-show="show" class="b-sub_menu">
+        表示内容
       </div>
 
-  </body>
+      <section class="b-main_slider">
+        <div class="e-inner">
+          <div><img src="img/min/61896571.jpg" alt="メイン画像" /></div>
+        </div>
+      </section>
 
+      <section class="b-sect1">
+        <div class="b-sect1__e-inner">
+          <div class="b-sect1__e-text_box">
+            <h2 class="title01">
+              「選ばれ続ける」 これが品質です。
+            </h2>
+            <p class="e-text">
+              「エムハンドに頼んでよかった」その言葉が私たちの働くモチベーションです。<br />
+              最初の依頼から9割のお客様と、長いお付き合いが続いています。
+            </p>
+          </div>
+        </div>
+        <div class="btn">
+          <a href="#">BUTTON</a>
+        </div>
+      </section>
+    </div>
+    <script>
+      new Vue({
+        el: "#wrapper",
+        data: {
+          show: false
+        },
+        methods: {
+          active: function() {
+            this.show = true;
+          },
+          no_active: function() {
+            this.show = false;
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
