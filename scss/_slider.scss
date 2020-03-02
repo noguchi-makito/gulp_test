@@ -1,0 +1,35 @@
+.b-main_slider {
+  background-color: $COLOR_MAIN;
+  color: $COLOR_WHITE;
+  padding: 100px 40px;
+  position: relative;
+  z-index: 1;
+
+  ::before {
+    content: "WEB";
+    position: absolute;
+    right: 0;
+    bottom: -26rem;
+    font-size: 48rem;
+    color: #212121;
+    letter-spacing: -1.5rem;
+    transform: rotate(-90deg);
+    z-index: -1;
+  }
+
+  .e-main_catch {
+    > .sub_title {
+      color: $COLOR_AQUA-BLUE;
+    }
+    > .main_title {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+    > .text {
+      em {
+        box-shadow: inset 0 -9px 0 -3px #a7860f;
+        line-height: 2;
+      }
+    }
+  }
+}

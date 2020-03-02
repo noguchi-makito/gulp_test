@@ -27,15 +27,40 @@
           </div>
           <nav class="b-header__e-nav">
             <ul class="g_nav">
-              <li><a href="#">コンセプト</a></li>
               <li>
-                <a href="#" v-on:mouseover="active" v-on:mouseleave="no_active">
-                  サービス
+                <a href="#">
+                  <span class="main_title">会社概要</span>
+                  <span class="sub_title">About</span>
                 </a>
               </li>
-              <li><a href="#">制作費用</a></li>
-              <li><a href="#">実績費用</a></li>
-              <li><a href="#">会社案内</a></li>
+              <li>
+                <a href="#" v-on:mouseover="active" v-on:mouseleave="no_active">
+                  <span class="main_title">サービス</span>
+                  <span class="sub_title">Services</span>
+                  <!-- サービスのメガメニュー -->
+                  <div v-show="show" class="b-sub_menu">
+                    表示内容
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="main_title">制作の流れ</span>
+                  <span class="sub_title">Flow</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="main_title">実績</span>
+                  <span class="sub_title">Works</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="main_title">会社案内</span>
+                  <span class="sub_title">Guide</span>
+                </a>
+              </li>
             </ul>
           </nav>
           <div class="b-header__e-tell">
@@ -51,14 +76,19 @@
         </div>
       </header>
 
-      <!-- サービスのメガメニュー -->
-      <div v-show="show" class="b-sub_menu">
-        表示内容
-      </div>
-
       <section class="b-main_slider">
         <div class="e-inner">
-          <div><img src="img/min/61896571.jpg" alt="メイン画像" /></div>
+          <div class="e-main_catch">
+            <span class="sub_title"
+              >Grow Your Business With Website Optimization.</span
+            >
+            <h2 class="main_title">ビジネスを成長させる<br />ウェブ制作会社</h2>
+            <p class="text">
+              顧客との重要な接点であるウェブサイトを最大限に活用できていますか？<br />
+              <em>マーケティング戦略のあるウェブ制作</em
+              >で、クライアントのビジネスを総合的に支援します。
+            </p>
+          </div>
         </div>
       </section>
 
