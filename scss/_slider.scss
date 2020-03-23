@@ -5,15 +5,15 @@
   position: relative;
   z-index: 1;
 
-  ::before {
-    content: "WEB";
+  &:after {
+    content: "";
+    width: 640px;
+    height: 640px;
+    border-radius: 50%;
+    border: 1px solid #2f2e2e;
     position: absolute;
-    right: 0;
-    bottom: -26rem;
-    font-size: 48rem;
-    color: #212121;
-    letter-spacing: -1.5rem;
-    transform: rotate(-90deg);
+    right: 460px;
+    bottom: 350px;
     z-index: -1;
   }
 
@@ -26,10 +26,49 @@
       margin: 20px 0;
     }
     > .text {
+      margin-bottom: 40px;
       em {
         box-shadow: inset 0 -9px 0 -3px #a7860f;
         line-height: 2;
       }
     }
+    > .link_button {
+      > a {
+        border: 1px solid $COLOR_AQUA-BLUE;
+        color: $COLOR_AQUA-BLUE;
+        background: none;
+        border-radius: 30px;
+        position: relative;
+        padding: 10px 60px;
+        font-size: 16px;
+        &::after {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 1em;
+          content: "";
+          border-top: 2px solid $COLOR_AQUA-BLUE;
+          border-right: 2px solid $COLOR_AQUA-BLUE;
+          width: 8px;
+          height: 8px;
+          transform: rotate(45deg);
+          margin: auto;
+        }
+        &:hover {
+          &::after {
+            animation: arrow 0.6s;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes arrow {
+  50% {
+    right: 1em;
+  }
+  100% {
+    right: 0.4em;
   }
 }

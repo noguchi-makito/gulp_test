@@ -5,6 +5,8 @@
   align-items: center;
   background: $COLOR_MAIN;
   color: $COLOR_WHITE;
+  z-index: 20;
+  position: sticky;
 
   &__e-inner {
     display: flex;

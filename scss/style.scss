@@ -37,6 +37,67 @@ body {
   }
 }
 
+.b-sect2,
+.b-sect3 {
+  background: #f4f6f8;
+  &__e-inner {
+    padding: 60px 120px;
+  }
+  &__e-title {
+    text-align: center;
+    .title01 {
+      position: relative;
+      font-size: 28px;
+      font-weight: bold;
+      &:before {
+        content: "";
+        height: 1px;
+        width: 150px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #e0e0e0;
+      }
+    }
+    .sub_title01 {
+      display: block;
+      margin-top: 8px;
+      color: #b3b3b3;
+      font-size: 16px;
+    }
+    .text {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  }
+  &__e-services_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 40px;
+    .item {
+      width: calc((100% - 40px) / 3);
+      padding: 30px;
+      background: $COLOR_WHITE;
+    }
+    .icon {
+      text-align: center;
+      padding: 30px 60px;
+    }
+    .title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      > span {
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 //sliderの読み込み
 @import "slider";
 
