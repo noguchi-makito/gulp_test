@@ -13,6 +13,9 @@
 
     <!-- vuejs読み込み -->
     <script src="js/vue.js"></script>
+
+    <!-- animejs読み込み-->
+    <script src="js/anime.min.js"></script>
   </head>
 
   <body>
@@ -100,9 +103,6 @@
             </p>
           </div>
         </div>
-        <div class="btn">
-          <a href="#">BUTTON</a>
-        </div>
       </section>
 
       <section class="b-sect2">
@@ -115,7 +115,7 @@
             <p class="text">戦略から作成、運用まで一貫サポートします。</p>
           </div>
           <div class="b-sect2__e-services_box">
-            <a class="item">
+            <a class="item" href="#">
               <div class="icon">
                 <img src="../img/icon1.svg" alt="アイコン" />
               </div>
@@ -127,7 +127,7 @@
                 マーケティングフレームワークを活用し、現状分析・戦略設計・ゴール設計などを行います。
               </p>
             </a>
-            <a class="item">
+            <a class="item" href="#">
               <div class="icon">
                 <img src="../img/icon2.svg" alt="アイコン" />
               </div>
@@ -139,7 +139,7 @@
                 ユーザビリティの高いデザイン設計とモダンな開発技術による高速なウェブ制作を行います。
               </p>
             </a>
-            <a class="item">
+            <a class="item" href="#">
               <div class="icon">
                 <img src="../img/icon3.svg" alt="アイコン" />
               </div>
@@ -155,7 +155,7 @@
         </div>
       </section>
 
-      <section class="b-sect3">
+      <section class="b-sect3" @mouseenter.once="countUp">
         <div class="b-sect3__e-inner">
           <div class="b-sect3__e-title">
             <h2 class="title01">
@@ -166,13 +166,48 @@
           </div>
           <div class="b-sect3__e-count_area">
             <p>制作・運用実績</p>
-            <button>スタート</button>
-            <p id="myTargetElement"></p>
+            <p><span id="elem2"></span>件以上</p>
           </div>
         </div>
       </section>
+
+      <!-- TOPへ戻るボタン -->
+      <v-move-to-top></v-move-to-top>
     </div>
+
     <script>
+      //TOPへ戻るボタンのコンポーネント
+      Vue.component("v-move-to-top", {
+        data() {
+          return {
+            show: false
+          };
+        },
+        template: '<transition name="fade">' +
+          '<button type="button" v-if="show" @click="moveToTop" class="top_button">TOP</button>' +
+          "</transition>",
+        methods: {
+          moveToTop: function() {
+            const duration = 200; // 移動速度（1秒で終了）
+            const interval = 25; // 0.025秒ごとに移動
+            const step = -window.scrollY / Math.ceil(duration / interval); // 1回に移動する距離
+            const timer = setInterval(() => {
+              window.scrollBy(0, step); // スクロール位置を移動
+
+              if (window.scrollY <= 0) {
+                clearInterval(timer);
+              }
+            }, interval);
+          }
+        },
+        mounted() {
+          // スクロールして一定まで行った時にTOPボタンの表示
+          window.addEventListener("scroll", () => {
+            this.show = window.scrollY > 200;
+          });
+        }
+      });
+
       new Vue({
         el: "#wrapper",
         data: {
@@ -184,6 +219,15 @@
           },
           no_active: function() {
             this.show = false;
+          },
+          countUp: function() {
+            anime({
+              targets: elem2,
+              innerHTML: [0, 200],
+              easing: "linear",
+              duration: 3000,
+              round: 1
+            });
           }
         }
       });
