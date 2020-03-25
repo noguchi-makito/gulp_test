@@ -168,6 +168,18 @@
             <p>制作・運用実績</p>
             <p><span id="elem2"></span>件以上</p>
           </div>
+          <div class="b-sect3__e-works_area">
+            <div class="works_box" v-for="work in works" :key="work.title">
+              <h3 class="works_title">{{work.title}}</h3>
+              <dl class="works_list">
+                <dt class="sub_title">プロジェクト期間</dt>
+                <dd class="sub_text">{{work.period}}</dd>
+                <dt class="sub_title">担当スコープ</dt>
+                <dd class="sub_text">{{work.scope}}</dd>
+              </dl>
+            </div>
+            <a href="works.html" class="works_more">実績紹介ページへ</a>
+          </div>
         </div>
       </section>
 
@@ -210,8 +222,41 @@
 
       new Vue({
         el: "#wrapper",
-        data: {
-          show: false
+        data() {
+          return {
+            works: [{
+                title: "不動産系物件紹介サイト",
+                period: "約4ヶ月",
+                scope: "企画・設計 / ディレクション / デザイン / コーディング"
+              },
+              {
+                title: "学校法人系組織紹介サイト",
+                period: "約10ヶ月",
+                scope: "企画・設計 / ディレクション / デザイン / コーディング"
+              },
+              {
+                title: "求人系案件紹介サイト",
+                period: "約10ヶ月",
+                scope: "ディレクション / デザイン / コーディング"
+              },
+              {
+                title: "ファッション系メディアサイト",
+                period: "約2ヶ月",
+                scope: "コーディング"
+              },
+              {
+                title: "医療系事業紹介サイト",
+                period: "約3ヶ月",
+                scope: "ディレクション / デザイン / コーディング"
+              },
+              {
+                title: "美容系職能団体サイト",
+                period: "約3ヶ月",
+                scope: "ディレクション / デザイン / コーディング"
+              }
+            ],
+            show: false
+          };
         },
         methods: {
           active: function() {

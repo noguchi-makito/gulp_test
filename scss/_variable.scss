@@ -1,7 +1,15 @@
 // 変数
+
+//色
 $COLOR_WHITE: #fff;
 $COLOR_MAIN: #1e1d1c;
 $COLOR_YELLOW: #fbcc3c;
 $COLOR_GRAY: #8792a4;
+$COLOR_BLUE: #52b0ae;
 $COLOR_AQUA-BLUE: #93e4ea;
 $COLOR_MAIN-TEXT: #2d2d2d;
+
+//影
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);
