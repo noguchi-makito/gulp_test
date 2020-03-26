@@ -320,6 +320,59 @@ body {
   left: 0;
 }
 
+.b-breadcrumb {
+  padding: 10px 120px;
+  font-size: 14px;
+  background-color: #fff;
+  background-image: repeating-linear-gradient(-45deg, #efefef, #efefef 1px, transparent 0, transparent 4px);
+}
+
+.b-breadcrumb .before {
+  color: #489be4;
+  margin: 10px;
+}
+
+.b-breadcrumb .after {
+  margin-left: 10px;
+}
+
+.b-page_main {
+  color: #fff;
+  text-align: center;
+  padding: 60px;
+}
+
+.b-page_main .title {
+  font-size: 28px;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.b-page_main .title:before {
+  content: "";
+  height: 1px;
+  width: 150px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: #fff;
+}
+
+.b-page_main .title_en {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.page_main--works {
+  background: url(../img/page-hader-works.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
 .b-sect1 {
   background: #f0f0f0;
 }

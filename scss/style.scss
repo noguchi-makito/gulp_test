@@ -22,6 +22,59 @@ body {
 //headerの読み込み
 @import "header";
 
+.b-breadcrumb {
+  padding: 10px 120px;
+  font-size: 14px;
+  background-color: $COLOR_WHITE;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #efefef,
+    #efefef 1px,
+    transparent 0,
+    transparent 4px
+  );
+  .before {
+    color: #489be4;
+    margin: 10px;
+  }
+  .after {
+    margin-left: 10px;
+  }
+}
+
+.b-page_main {
+  color: $COLOR_WHITE;
+  text-align: center;
+  padding: 60px;
+  .title {
+    font-size: 28px;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    &:before {
+      content: "";
+      height: 1px;
+      width: 150px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+    }
+  }
+  .title_en {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+  }
+}
+
+.page_main--works {
+  background: url(../img/page-hader-works.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
 .b-sect1 {
   background: #f0f0f0;
 
